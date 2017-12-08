@@ -41,6 +41,22 @@ class BearSpec extends Specification {
         bear.isAlive() == false
     }
 
+    def "Bear should be reborn after eating"() {
+        given:
+        int weight = 3
+        def clock = new TestClock()
+        Bear bear = new BlackBear(weight, clock)
+        bear.eat()
+        clock.changeTimeByDays(10)
+        assert !bear.isAlive()
+
+        when:
+        bear.eat()
+
+        then:
+        bear.isAlive()
+    }
+
     def "Bear uses the clock to update its last meal time during eating"() {
         given:
         Clock clock = Mock(Clock)

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import pl.sdacademy.animals.bear.time.TestClock;
 import pl.sdacademy.animals.time.Clock;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BearTest {
@@ -11,7 +12,7 @@ class BearTest {
     @Test
     public void bearShouldBeAliveImmediatelyAfterCreation() {
         Bear bear = new BlackBear(3);
-        assertTrue(bear.isAlive());
+        assertThat(bear.isAlive()).isTrue();
     }
 
     @Test
