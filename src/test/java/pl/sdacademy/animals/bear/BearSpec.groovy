@@ -5,6 +5,8 @@ import pl.sdacademy.animals.bear.time.TestClock
 import pl.sdacademy.animals.time.Clock
 import spock.lang.Specification
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat
+
 class BearSpec extends Specification {
 
     def "Bear should be alive immediately after creation"() {
@@ -67,5 +69,38 @@ class BearSpec extends Specification {
 
         then:
         1 * clock.currentTime
+    }
+
+    def "Black bear should be hibernating between 20 november and 15 march"() {
+        given:
+        Clock clock = Mock(Clock)
+        clock.getCurrentTime() >> date
+        BlackBear bear = new BlackBear(3, clock)
+
+        when:
+        boolean result = bear.isHibernating()
+
+        then:
+        assertThat(result).isTrue()
+
+        where:
+        date << [new DateTime(2017, 12, 01, 14, 0), new DateTime(2017, 11, 21, 14, 0), new DateTime(2018, 01, 04, 14, 0), new DateTime(2017, 03, 14, 14, 0)]
+    }
+
+    def "Black bear should not be hibernating if it is after 15 march and before 20 november"() {
+        given:
+        Clock clock = Mock(Clock)
+        clock.getCurrentTime() >> date
+        BlackBear bear = new BlackBear(3, clock)
+
+        when:
+        boolean result = bear.isHibernating()
+
+        then:
+        assertThat(result).isFalse()
+
+        where:
+        date << [new DateTime(2017, 05, 01, 14, 0), new DateTime(2017, 11, 19, 14, 0), new DateTime(2018, 07, 04, 14, 0), new DateTime(2017, 03, 16, 14, 0)]
+
     }
 }
