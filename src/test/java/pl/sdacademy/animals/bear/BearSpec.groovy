@@ -52,11 +52,11 @@ class BearSpec extends Specification {
 
         @Override
         DateTime getCurrentTime() {
-            counter++
-            if (counter > 1)
-                return DateTime.now().plusDays(10)
-            else
-                return DateTime.now()
+            return time
+        }
+
+        public void changeTimeByDays(int days) {
+            time = time.plusDays(days)
         }
 
         public void changeTimeByDays(int days){
