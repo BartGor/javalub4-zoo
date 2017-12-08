@@ -62,4 +62,4 @@ Niedźwiedzie zapadają w sen zimowy.
 6. Niedźwiedzie czarne śpią (boolean isHibernating) od 20 listopada do 15 marca.
 7. Niedźwiedzie polarna śpią od 5 maja do 10 października.
 8. Karmienie lub pojenie misia w trakcie snu zimowego powinno wyrzucać wyjątek BearHibernatingException.
->>>>>>> 13342cc8319444c5cf8a3ad1ff73165c5f7604cc
+
