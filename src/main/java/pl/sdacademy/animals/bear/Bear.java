@@ -2,7 +2,6 @@ package pl.sdacademy.animals.bear;
 
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
-import org.joda.time.LocalDate;
 import pl.sdacademy.animals.Animal;
 import pl.sdacademy.animals.time.Clock;
 import pl.sdacademy.animals.time.JodaClock;
@@ -13,6 +12,8 @@ public abstract class Bear implements Animal {
     private int weight;
     private DateTime lastMealTime;
     private Clock clock;
+    private int happyMeal;
+    private double drinkWeight;
 
     public Bear(int weight, Clock clock) {
         this(weight);
@@ -30,12 +31,23 @@ public abstract class Bear implements Animal {
         return new Duration(lastMealTime, clock.getCurrentTime()).isShorterThan(Duration.standardDays(10));
     }
 
-    public void eat() {
-        lastMealTime = clock.getCurrentTime();
+//    public void eat() {
+//        lastMealTime = clock.getCurrentTime();
+//
+//    }
+
+    public void eat(int happyMeal) {
+        weight += happyMeal;
+
+    }
+
+    public void drink(double drinkWeight) {
+        this.weight = (int) (weight + (0.75 * weight));
+
     }
 
     @Override
-    public int getWeight() {
+    public double getWeight() {
         return weight;
     }
 

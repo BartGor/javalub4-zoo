@@ -59,8 +59,56 @@ class BearSpec extends Specification {
             time = time.plusDays(days)
         }
 
-        public void changeTimeByDays(int days){
-            this.time.plusDays(days)
-        }
+
     }
+
+    def "If a bear eats a meal with a given weight, its weight will increase"() {
+        given:
+        int weight = 3
+        int happymeal = 2
+        Bear bear = new BlackBear(weight)
+
+
+        when:
+        bear.eat(happymeal)
+
+        then:
+        bear.weight == bear.weight + happymeal
+
+    }
+
+    def "Bear schould be reborn after eating"() {
+        given:
+        int weight = 3
+        def clock = new TestClock()
+        Bear bear = new BlackBear(weight, clock)
+        bear.eat()
+        clock.changeTimeByDays(10)
+        assert !bear.isAlive()
+
+
+        when:
+        bear.eat()
+
+
+        then:
+        bear.isAlive()
+    }
+
+    def "IF a bear drink "() {
+        given:
+        int weight = 3
+        double drinkWeight = 1.0
+        Bear bear = new BlackBear(weight)
+
+        when:
+        bear.drink(drinkWeight)
+
+        then:
+        bear.weight == bear.weight + drinkWeight * 0.75
+
+    }
+
+
+
 }

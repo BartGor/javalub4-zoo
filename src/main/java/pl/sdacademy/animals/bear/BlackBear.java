@@ -7,7 +7,5 @@ public class BlackBear extends Bear {
         super(weight);
     }
 
-    public BlackBear(int weight, Clock clock) {
-        super(weight, clock);
-    }
+
 }
